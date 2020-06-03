@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>Suresh AngularJs Code
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="controller/home-controller.js"></script>
+
+<body ng-app="MyApp">
+    <div ng-controller="homeController" ng-init="Employee.Name='Pushadapu';">
+        <p>
+           Search: <input type="text" ng-change="filterEmployee();" ng-model="SearchTerm"></p>
+        <p>
+        <table style="border:3px">
+            <thead>
+                <th>
+                    Sr#
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    EmailId
+                </th>
+                <th>
+                    Department
+                </th>
+            </thead>
+
+            <tr ng-repeat="Emp in Employees | orderBy:'Name'">
+                <td>{{$index+1}}</td>
+                <td>{{Emp.Name | uppercase}} </td>
+                <td>{{Emp.EmailId}}</td>
+                <td>{{Emp.DepartmentId}}</td>
+            </tr>
+        </table>
+        <p>
+            Name: <input type="text" ng-model="Employee.Name"></p>
+        <p>
+            Email: <input type="text" ng-model="Employee.EmailId"></p>
+        <p>
+            Main Menu:<select id="ddlMenu" ng-change="loadSubMenu();" name="ddlMenu" ng-model="MenuId">
+                <option ng-repeat="m in MainMenu" value="{{m.Id}}">{{m.Name}}</option>
+            </select>
+        </p>
+        <p>
+            Sub Menu:<select id="ddlSubMenu" name="ddlSubMenu" ng-model="SubMenuId">
+                <option ng-repeat="m in SubMenu" value="{{m.Id}}">{{m.Name}}</option>
+            </select>
+        </p>
+        <p ng-bind="Employee.Name"></p>
+        <button type="button" name="displayDetails" id="displayDetails" ng-click="myFunc()">DisplayDetails</button>
+    </div>
+</body>
+
+</html>
